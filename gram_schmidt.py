@@ -7,6 +7,7 @@ def multiply(cofficient, v):
     return map((lambda x : x * cofficient), v)
 
 def proj(v1, v2):
+    print "v1 * (v2 * v1 / v1 * v1)  -->", v1, "*", np.dot(v2, v1) , "/", np.dot(v1, v1)
     return multiply(gs_cofficient(v1, v2) , v1)
 
 def gs(X):
@@ -19,8 +20,19 @@ def gs(X):
         Y.append(temp_vec)
     return Y
 
-#Test data
-test = np.array([[3.0, 1.0], [2.0, 2.0]])
-test2 = np.array([[1.0, 1.0, 0.0], [1.0, 3.0, 1.0], [2.0, -1.0, 1.0]])
-print np.array(gs(test))
-print np.array(gs(test2))
+#Calcular la base ortogonal
+#test = np.array([[0.0, 0.0, 1.0, 1.0], [1.0, 0.0, -1.0, 1.0 ], [-1.0, 1.0, 1.0, -1.0]])
+test = np.array([[-1.0, 0.0, 1.0 ], [-2.0, 1.0, 1.0]])
+print "Base:\n", test , "\n"
+baseorto = np.array(gs(test))
+print "Base ortogonal:\n", baseorto , "\n"
+
+# Proyeccion
+w = np.array([-3.0, 0.0, 0.0])
+print "Vector w: ", w
+P = []
+for i in range(len(baseorto)):
+    proj_vec = proj(baseorto[i], w)
+    P.append(proj_vec)
+
+print "A sumar: ", P
