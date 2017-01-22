@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import numpy as np
 
 def gs_cofficient(v1, v2):
